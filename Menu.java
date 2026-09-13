@@ -1,19 +1,21 @@
 package gui;
 
+import StateManagement.Game;
+
 import javax.swing.JFrame;
 
 public class Menu extends JFrame
 {
-    private GamePanel panel;
+    public static GamePanel panel;
 
-    public Menu()
+    public Menu(Game game)
     {
         setTitle("CHEESSE");
         setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        panel = new GamePanel();
+        panel = new GamePanel(game);
         add(panel);
 
         setVisible(true);

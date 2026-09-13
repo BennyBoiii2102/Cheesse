@@ -1,8 +1,19 @@
 package gui;
 
+import StateManagement.Game;
+
 import java.awt.*;
 
 public class DrawFunctions {
+    Game game;
+
+    public DrawFunctions(Game game) {
+        this.game = game;
+    }
+    void drawGame(Graphics g) {
+        drawKing(g, false, game.blackKing.getColumn(), game.blackKing.getRow());
+        drawKing(g, true, game.whiteKing.getColumn(), game.whiteKing.getRow());
+    }
     void drawBorder(Graphics g) {
         g.setColor(Color.BLACK);
         g.setFont(new Font("Serif", Font.BOLD, 40));
