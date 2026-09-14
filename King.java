@@ -1,9 +1,13 @@
 package Pieces;
 
-public class King {
+import Movement.KingCapture;
+import Movement.KingMovement;
+
+public class King extends Piece{
+    public King(boolean color, int column, int row) {
+        super(color, column, row);
+    }
     /*
-     * Constructor
-     * Movement Logic:
      * Assume starting position KE2
      * First Tokenize the Position : Column 3, Row 1
      * Then take input
@@ -13,40 +17,12 @@ public class King {
      *
      * King Object (boolean color, int column, int row)
      */
-    boolean color;
-    int column;
-    int row;
-
-    public King(boolean color, int column, int row) {
-        this.color = color;
-        this.column = column;
-        this.row = row;
-    }
-
-    public boolean moveKing(int startColumn, int startRow, int endColumn, int endRow) {
-        int columnDifference = Math.abs(endColumn - startColumn);
-        int rowDifference = Math.abs(endRow - startRow);
-
-        if (columnDifference <= 1 && rowDifference <= 1 &&
-                (columnDifference != 0 || rowDifference != 0)) {
-            column = endColumn;
-            row = endRow;
-            return false;
+    public boolean moveKing(Piece[][] board, Piece piece, int startColumn, int startRow, int endColumn, int endRow) {
+        Piece occupied = CheckSquare.checkSquare(board, endColumn, endRow);
+        if (occupied != null) {
+            KingCapture.captureLikeKing(board, piece, startColumn, startRow, endColumn, endRow);
         }
-        else {
-            return true;
-        }
-    }
 
-    public int getColumn() {
-        return column;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public boolean getColor() {
-        return color;
+        return KingMovement.moveLikeKing(board, piece, startColumn, startRow, endColumn, endRow);
     }
 }
