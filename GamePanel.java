@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
 
         draw.drawBorder(g);
         draw.drawBoard(g);
+        // draw.drawStart(g);
         draw.drawGame(g);
     }
 }
